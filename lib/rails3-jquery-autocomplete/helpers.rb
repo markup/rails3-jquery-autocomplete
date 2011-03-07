@@ -28,6 +28,8 @@ module Rails3JQueryAutocomplete
         :activerecord
       elsif ancestors_ary.include?('Mongoid::Document')
         :mongoid
+      elsif acestroy_any.include?('Mongomapper::Document')
+        :mongomapper
       else
         raise NotImplementedError
       end
@@ -45,6 +47,15 @@ module Rails3JQueryAutocomplete
 
       case implementation
         when :mongoid then
+          if order 
+            order.split(',').collect do |fields|
+              sfields = fields.split
+              [sfields[0].downcase.to_sym, sfields[1].downcase.to_sym]
+            end
+          else
+            [[method.to_sym, :asc]]
+          end
+        when :mongomapper then
           if order 
             order.split(',').collect do |fields|
               sfields = fields.split
@@ -94,6 +105,9 @@ module Rails3JQueryAutocomplete
 
       case implementation
         when :mongoid
+          search = (is_full_search ? '.*' : '^') + term + '.*'
+          items = model.where(method.to_sym => /#{search}/i).limit(limit).order_by(order)
+        when :mongomapper
           search = (is_full_search ? '.*' : '^') + term + '.*'
           items = model.where(method.to_sym => /#{search}/i).limit(limit).order_by(order)
         when :activerecord

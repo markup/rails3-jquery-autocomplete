@@ -16,6 +16,10 @@ on how to use this gem with ActiveRecord [here](http://github.com/crowdint/rails
 You can find a [detailed example](http://github.com/crowdint/rails3-jquery-autocomplete-app/tree/mongoid)
 on how to use this gem with MongoID [here](http://github.com/crowdint/rails3-jquery-autocomplete-app/tree/mongoid). (Same thing, different branch)
 
+## MongoMapper
+
+Trying to implement for [Mongomapper](http://github.com/jnunemaker/mongomapper). Not ready yet.
+
 ## Before you start
 
 Make sure your project is using jQuery-ui with the autocomplete widget
