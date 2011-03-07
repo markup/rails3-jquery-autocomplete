@@ -28,7 +28,7 @@ module Rails3JQueryAutocomplete
         :activerecord
       elsif ancestors_ary.include?('Mongoid::Document')
         :mongoid
-      elsif acestroy_any.include?('Mongomapper::Document')
+      elsif ancestors_any.include?('Mongomapper::Document')
         :mongomapper
       else
         raise NotImplementedError
